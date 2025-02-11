@@ -3,9 +3,13 @@ import FormContainer from "../shared/form/FormContainer";
 import FormRow from "../shared/form/FormRow";
 import FormLabel from "../shared/form/FormLabel";
 import FormInput from "../shared/form/FormInput";
+import Button from "../shared/form/Button";
+import { SignInIcon } from "../shared/Icons";
+import { useNavigate } from "react-router-dom";
 
 
 const SignIn = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: "",
         password: ""
@@ -25,7 +29,7 @@ const SignIn = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(validate(formData)){
-            console.log("Form submitted successfully!");
+            navigate("/signup")
         }
         else {
             console.log("Form has some errors!")
@@ -54,10 +58,6 @@ const SignIn = () => {
                     <FormRow>
                         <FormLabel className="block text-sm font-medium text-gray-700" htmlFor="username" label="Username" />
                         <FormInput type="text" name="username" id="username" value={formData.username} onChange={handleChange} />
-                        {/* <input type="text" name="username" id="username" className={`w-full mt-1 px-3 py-2 border border-gray-400 rounded focus:outline-none`}
-                            value={formData.username}
-                            onChange={handleChange}
-                        /> */}
                         {errors?.username && (<p className="text-sm text-red-700">{errors.username}</p>)}
                     </FormRow>
                     <FormRow>
@@ -65,16 +65,7 @@ const SignIn = () => {
                         <FormInput type="text" name="password" id="password" value={formData.password} onChange={handleChange} />
                         {errors?.password && (<p className="text-sm text-red-700">{errors.password}</p>)}
                     </FormRow>
-                    <button
-                        type="button"
-                        onClick={handleSubmit}
-                        className="w-full mt-3 px-4 py-2 text-white rounded-md transition duration-200 bg-green-600 hover:bg-green-700"
-                    >
-                        Log In
-                    </button>
-                    {/* <Button type="button" text="Log In" onClick={handleSubmit} icon="" variant="success" className="w-full mt-3 px-4 py-2 text-white rounded-md transition duration-200 bg-green-600 hover:bg-green-700" /> */}
-                    {/* variant values=primary, secondary, success, danger, warning, info, light, dark */}
-                    {/* <Button type="button" text="Submit" onClick={() => handleSubmit} icon={<HomeIcon/>} variant="primary" /> */}
+                    <Button type="button" onClick={handleSubmit} icon={<SignInIcon/>} className="w-full mt-3 px-4 py-2 text-white rounded-md transition duration-200 " variant="success" btnText="Log In" />
                     <p>Don't have an account? <a href="/signup" className="font-semibold underline">Create one here</a>.</p>
                 </FormContainer>
             </div>
