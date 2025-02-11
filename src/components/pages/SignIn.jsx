@@ -62,7 +62,7 @@ const SignIn = () => {
                     </FormRow>
                     <FormRow>
                         <FormLabel className="block text-sm font-medium text-gray-700" htmlFor="password" label="Password" />
-                        <FormInput type="text" name="password" id="password" value={formData.password} onChange={handleChange} />
+                        <FormInput type="password" name="password" id="password" value={formData.password} onChange={handleChange} />
                         {errors?.password && (<p className="text-sm text-red-700">{errors.password}</p>)}
                     </FormRow>
                     <Button type="button" onClick={handleSubmit} icon={<SignInIcon/>} className="w-full mt-3 px-4 py-2 text-white rounded-md transition duration-200 " variant="success" btnText="Log In" />

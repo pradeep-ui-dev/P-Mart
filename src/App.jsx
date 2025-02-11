@@ -10,6 +10,7 @@ import ProductsLayout from './components/layout/ProductLayout'
 import ProductsLanding from './components/pages/ProductsLanding'
 import ProductByCategory from './components/shared/product/ProductByCategory'
 import Cart from './components/pages/Cart'
+import Page404 from './components/pages/Page404'
 
 function App() {
   
@@ -20,11 +21,13 @@ function App() {
           <Route path='/' element={<DefaultLayout />}>
             <Route index element={<SignIn/>}></Route>
             <Route path="signin" element={<SignIn />} />
-            <Route path='signup' element={<SignUp/>}></Route>
-
+            <Route path='signup' element={<SignUp/>}/>
+            <Route path="*" element={<Page404 />} />
+            
             <Route path='dashboard' element={<DashboardLayout/>}>
-              <Route index element={<HomePage />}></Route>
+              <Route index element={<HomePage />}/>
               <Route path="cart" element={<Cart />} />
+              
             </Route>
 
             <Route path="products" element={<ProductsLayout />}>
