@@ -6,7 +6,7 @@ import BreadCrumbsProduct from "./BreadCrumbs";
 const ProductByCategory = () => {
   const { categoryParam } = useParams();
   const {state} = useLocation();
-
+  //console.log(categoryParam, state)
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -34,7 +34,7 @@ const ProductByCategory = () => {
       <BreadCrumbsProduct/>
       <h1 className="text-2xl font-bold mb-6 capitalize">
         {categoryParam ? (
-          <>{state.categoryName}</>
+          <>{categoryParam}</>
         ) : (
           <>Products</>
         )}

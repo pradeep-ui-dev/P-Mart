@@ -1,24 +1,19 @@
 import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Spinner } from "../Spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductCategories } from "../../../redux/product.category.api";
 
 const ProductNavigation = () => {
-  const [categoryLinks, setCategoryLinks] = useState([]);
-  const [loading, setLoading] = useState([]);
+  //const [categoryLinks, setCategoryLinks] = useState([]);
+  //const [loading, setLoading] = useState([]);
 
+  const dispatch = useDispatch();
+  const { categories, loading, error } = useSelector((state) => state.productsCategories)
+  
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://dummyjson.com/products/categories"
-        );
-        const data = await response.json();
-        setCategoryLinks(data);
-        setLoading(false)
-      } catch (error) {}
-    };
-    fetchData();
-  }, []);
+    dispatch(fetchProductCategories())
+  }, [dispatch]);
 
   //console.log(categoryLinks)
   return (
@@ -32,11 +27,10 @@ const ProductNavigation = () => {
       >
         All Products
       </Link>
-      {loading && !categoryLinks.length ? (
-        // <Spinner/>
+      {loading && !categories.length ? (
         <Spinner/>
       ) : (
-        categoryLinks.map((category) => {
+        categories.map((category) => {
           return (
             <NavLink
               key={category.slug}

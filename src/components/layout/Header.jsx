@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import SearchBar from "./SearchBar";
 import MegaMenu from "../shared/main-menu/MegaMenu";
@@ -12,13 +12,13 @@ const Header = () => {
         <header className="bg-white shadow-lg sticky top-0 right-0 z-[1100]">
             <div className="mx-auto flex items-center justify-between py-3 px-6">
                 <div className="flex items-center space-x-2">
-                    <a to="/dashboard" className="logo">
+                    <Link to="/dashboard" className="logo">
                         <img
                         src="https://cdn.dmart.in/images/icons/dmart_ready_logo.svg"
                         alt="Logo"
                         className="h-12"
                         />
-                    </a>
+                    </Link>
                 </div>
                 <SearchBar />
                 <div className="flex items-center space-x-4">

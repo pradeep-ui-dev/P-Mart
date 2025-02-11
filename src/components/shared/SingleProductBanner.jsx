@@ -1,4 +1,5 @@
 const SingleProductBanner = () => {
+  
     return(
         <section className="p-6">
             <div className="bg-white border-[0.5px] border-gray-300 rounded p-6">

@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import Header from './components/layout/Header'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import DefaultLayout from './components/layout/DefaultLayout'
 import DashboardLayout from './components/layout/DashboardLayout'
@@ -23,11 +21,10 @@ function App() {
             <Route path="signin" element={<SignIn />} />
             <Route path='signup' element={<SignUp/>}/>
             <Route path="*" element={<Page404 />} />
-            
+
             <Route path='dashboard' element={<DashboardLayout/>}>
               <Route index element={<HomePage />}/>
-              <Route path="cart" element={<Cart />} />
-              
+              <Route path="cart" element={<Cart />} />              
             </Route>
 
             <Route path="products" element={<ProductsLayout />}>
@@ -38,7 +35,6 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-      {/* <Header /> */}
     </>
   )
 }

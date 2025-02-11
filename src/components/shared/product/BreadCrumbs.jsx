@@ -16,7 +16,7 @@ const BreadCrumbsProduct = () => {
       {categoryParam ? (
         <>
           <Link
-            to={`/api-products`}
+            to={`/products`}
             className="text-green-600 hover:underline"
           >
             Products
