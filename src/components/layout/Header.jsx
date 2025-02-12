@@ -41,7 +41,7 @@ const Header = () => {
                         </span>
                         <span className="text-sm">Account</span>
                     </button>
-                    <button onClick={() => navigate("/dashboard/cart")} className="flex gap-1 items-center focus:border-transparent hover:border-transparent">
+                    <button onClick={() => navigate("/cart")} className="flex gap-1 items-center focus:border-transparent hover:border-transparent">
                         <span className="material-icons">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

@@ -5,8 +5,7 @@ import Footer from "../layout/Footer";
 const Page404 = () => {
     return(
         <>
-        <div className="flex flex-col min-h-screen">
-            <Header/>
+        <div className="flex flex-col flex-grow">
             <div className="flex flex-grow items-center justify-center bg-gray-100">
                 <div className="text-center">
                     <h1 className="text-7xl font-bold text-green-600">404</h1>
@@ -20,7 +19,6 @@ const Page404 = () => {
                     </Link>
                 </div>
             </div>
-            <Footer/>
         </div>
             
         </>

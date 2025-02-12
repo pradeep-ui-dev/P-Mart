@@ -1,24 +1,12 @@
-import {
-  createAsyncThunk,
-  createSlice,
-} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchProducts } from "./product.api";
 
 const initialState = {
   products: [],
   loading: false,
-  error: "",
+  error: false,
+  errorMessage: "",
 };
-
-export const fetchProducts = createAsyncThunk(
-  "get/allProducts",
-  async ({ limit, offset }) => {
-    const response = await fetch(
-      `https://dummyjson.com/products?limit=${limit}&offset=${offset}`
-    );
-    const data = await response.json();
-    return data.products;
-  }
-);
 
 const productSlice = createSlice({
   name: "products",
@@ -39,8 +27,15 @@ const productSlice = createSlice({
         state.loading = false;
       }
     );
+    builder.addCase(
+      fetchProducts.rejected,
+      (state, action) => {
+        state.loading = false;
+        state.error = true;
+        state.errorMessage = action.payload.message
+      }
+    );
   },
 });
-
 
 export default productSlice;

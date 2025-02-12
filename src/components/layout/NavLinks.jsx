@@ -9,11 +9,15 @@ const NavLinks = () => {
     const { categories, loading, error } = useSelector((state) => state.productsCategories)
     
     useEffect(() => {
-        dispatch(fetchProductCategories())
-    }, [dispatch])
+        if(!categories.length){
+            dispatch(fetchProductCategories())
+        }        
+    }, [dispatch, categories])
     const limitedCategories = categories.slice(0, 7);
     if (loading) return <p>Loading categories...</p>;
     if (error) return <p>Error: {error}</p>;
+
+
     //console.log(limitedCategories)
     // const LinksArr = [
     //     { href: "/products", text: "Products"},
