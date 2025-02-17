@@ -9,6 +9,8 @@ import ProductsLanding from './components/pages/ProductsLanding'
 import ProductByCategory from './components/shared/product/ProductByCategory'
 import Cart from './components/pages/Cart'
 import Page404 from './components/pages/Page404'
+import InnerPageLayout from './components/layout/InnerPageLayout'
+import CheckoutPage from './components/pages/Checkout'
 
 function App() {
   
@@ -20,11 +22,17 @@ function App() {
             <Route index element={<SignIn/>}></Route>
             <Route path="signin" element={<SignIn />} />
             <Route path='signup' element={<SignUp/>}/>
-            <Route path="*" element={<Page404 />} />
+            
+
+            <Route path='/' element={<InnerPageLayout/>}>
+              <Route path='/checkout' element={<CheckoutPage/>}/>
+              <Route path="*" element={<Page404 />} />
+              <Route path="cart" element={<Cart />} />  
+            </Route>
 
             <Route path='dashboard' element={<DashboardLayout/>}>
               <Route index element={<HomePage />}/>
-              <Route path="cart" element={<Cart />} />              
+                          
             </Route>
 
             <Route path="products" element={<ProductsLayout />}>

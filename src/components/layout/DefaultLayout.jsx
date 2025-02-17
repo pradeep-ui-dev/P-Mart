@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 const DefaultLayout = () => {
     
     return (
-        <div className="wrapper">
+        <div className="wrapper flex flex-col min-h-screen">
             <ToastContainer />
             <Outlet />
         </div>

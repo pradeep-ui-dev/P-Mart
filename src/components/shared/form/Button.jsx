@@ -1,6 +1,6 @@
 
 const Button = (props) => {
-    const {type="button", onClick, className, icon = "", variant, btnText} = props;
+    const {type="button", disabled=false, onClick, className, icon = "", variant, btnText} = props;
 
     const validButtonTypes = ["button", "submit"]
     if(!validButtonTypes.includes(type)){
@@ -27,6 +27,7 @@ const Button = (props) => {
             type={type}
             onClick={onClick}
             className={`${className} ${buttonClass}`}
+            disabled={disabled}
         >
             <span className="flex justify-center items-center">
                 {icon && (<span className="iconWrap mr-2">{icon}</span>)}

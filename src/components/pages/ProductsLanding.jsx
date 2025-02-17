@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../redux/products.slice";
+import { fetchProducts } from "../../redux/product.api";
 import ProductCardItem from "../shared/product/ProductCardItem";
 
 const ProductsLanding = () => {

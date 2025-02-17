@@ -12,8 +12,12 @@ const ProductNavigation = () => {
   const { categories, loading, error } = useSelector((state) => state.productsCategories)
   
   useEffect(() => {
-    dispatch(fetchProductCategories())
-  }, [dispatch]);
+    if(!categories.length)
+    {
+      dispatch(fetchProductCategories())
+    }
+    
+  }, [dispatch, categories]);
 
   //console.log(categoryLinks)
   return (

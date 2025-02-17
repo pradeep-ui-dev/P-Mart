@@ -1,16 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, removeFromCart, updateQuantity } from "../../redux/cartSlice";
+import Button from "../shared/form/Button";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Cart = () => {
+    const navigate = useNavigate()
+    const {cartItems, totalQuantity, totalPrice} = useSelector((state) => state.cart)
+    //console.log(`Total Quantity: ${totalQuantity}, Total Price: ${totalPrice}`)
 
-    const cartItems = useSelector((state) => state.cart.cartItems)
-
-    const total = cartItems.reduce(
-        (acc, item) => {
-            acc.totalQuantity += item.quantity;
-            acc.totalPrice += item.price * item.quantity;
-            return acc
-        }, {totalQuantity: 0, totalPrice: 0})
+    // const total = cartItems.reduce(
+    //     (acc, item) => {
+    //         acc.totalQuantity += item.quantity;
+    //         acc.totalPrice += item.price * item.quantity;
+    //         return acc
+    //     }, {totalQuantity: 0, totalPrice: 0})
     
     //console.log(total.totalQuantity, total.totalPrice)
     
@@ -21,14 +24,16 @@ const Cart = () => {
             removeFromCart(id));
       };
     
-      const handleQuantityChange = (id, quantity) => {
+    const handleQuantityChange = (id, quantity) => {
         if (quantity > 0) {
           dispatch(
             updateQuantity({ id, quantity }));
         }
-      };
+    };
+    const minValue = 10;
+
     return(
-        <div className="bg-gray-100 min-h-screen p-6">
+        <div className="bg-gray-100 p-6 flex-grow">
             <div className="max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-md">
                 <h1 className="text-2xl font-bold border-b pb-4 flex justify-between items-center">My Cart 
                     {(cartItems.length > 0) && <button className=" bg-green-600 text-base p-3 text-white py-2 mt-4 rounded-md hover:bg-green-700 transition"
@@ -95,18 +100,27 @@ const Cart = () => {
                     Total Items:{" "}
                     <span className="font-semibold">
                         {/* {console.log(cartItems)} */}
-                        {total.totalQuantity}
+                        {totalQuantity}
                     </span>
                     </p>
                     <p className="text-gray-700 mt-2">
                     Total Price:{" "}
                     <span className="font-semibold">
-                        ₹ {(total.totalPrice).toFixed(2)}
+                        ₹ {(totalPrice).toFixed(2)}
                     </span>
                     </p>
-                    <button className="w-full bg-green-600 text-white py-2 mt-4 rounded-md hover:bg-green-700 transition">
-                    Proceed to Checkout
-                    </button>
+                    {totalPrice < minValue && <p className="text-gray-700 mt-2">
+                    Minimum order value should be:{" "} 
+                    <span className="font-semibold">
+                        ₹ {minValue}
+                    </span>
+                    </p>}
+                    
+                    <Button disabled={totalPrice < minValue} type="button" 
+                    onClick={() => {
+                        totalPrice > minValue && navigate('/checkout')
+                    }} 
+                    className={`w-full bg-green-600 text-white py-2 mt-4 rounded-md hover:bg-green-700 transition ${totalPrice < minValue ? ('opacity-60') : (<></>)}`} icon = "" variant="primary" btnText="Proceed to Checkout" />
                 </div>
                 )}
             </div>
