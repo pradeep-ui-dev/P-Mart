@@ -3,6 +3,7 @@ import NavLinks from "./NavLinks";
 import SearchBar from "./SearchBar";
 import MegaMenu from "../shared/main-menu/MegaMenu";
 import { useSelector } from "react-redux";
+import UserAccount from "./components/UserAcount";
 
 const Header = () => {
     const navigate = useNavigate()
@@ -39,7 +40,7 @@ const Header = () => {
                                 />
                             </svg>
                         </span>
-                        <span className="text-sm">Account</span>
+                        <UserAccount />
                     </button>
                     <button onClick={() => navigate("/dashboard/cart")} className="flex gap-1 items-center focus:border-transparent hover:border-transparent">
                         <span className="material-icons">
