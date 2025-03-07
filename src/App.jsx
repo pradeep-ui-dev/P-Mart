@@ -11,6 +11,7 @@ import Cart from './components/pages/Cart'
 import Page404 from './components/pages/Page404'
 import InnerPageLayout from './components/layout/InnerPageLayout'
 import CheckoutPage from './components/pages/Checkout'
+import AddRoles from './components/pages/AddRoles'
 
 function App() {
   
@@ -32,6 +33,7 @@ function App() {
 
             <Route path='dashboard' element={<DashboardLayout/>}>
               <Route index element={<HomePage />}/>
+              <Route path='add-roles' element={<AddRoles/>}/>
                           
             </Route>
 

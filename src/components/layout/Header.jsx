@@ -2,13 +2,24 @@ import { Link, useNavigate } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import SearchBar from "./SearchBar";
 import MegaMenu from "../shared/main-menu/MegaMenu";
-import { useSelector } from "react-redux";
-import UserAccount from "./components/UserAcount";
+import { useDispatch, useSelector } from "react-redux";
+import UserAccount from "./components/UserAccount";
+import { fetchUserDetails } from "../../redux/userDetails.api";
+import { useEffect } from "react";
+import Button from "../shared/form/Button";
 
 const Header = () => {
     const navigate = useNavigate()
     const {cartItems} = useSelector((state) => state.cart)
+    const dispatch = useDispatch();
+    const { userDetail, loading, error} = useSelector((state) => state.userDetails)
+    const userRole = userDetail?.data?.roles?.[0]?.role;
 
+    useEffect(() => {
+        dispatch(fetchUserDetails());
+    }, [dispatch])
+
+    console.log(userRole)
     return(
         <header className="bg-white shadow-lg sticky top-0 right-0 z-[1100]">
             <div className="mx-auto flex items-center justify-between py-3 px-6">
@@ -23,6 +34,17 @@ const Header = () => {
                 </div>
                 <SearchBar />
                 <div className="flex items-center space-x-4">
+                    {userRole === "admin" && (<Button
+                        type="button"
+                        onClick={() => {
+                            window.location.href = "/dashboard/add-roles"
+                        }}
+                        icon=""
+                        className="mt-3 px-4 py-2 text-white rounded-md transition duration-200 "
+                        variant="success"
+                        btnText="Add Roles"
+                    />)}
+                    
                     <button className="flex gap-1 items-center focus:border-transparent hover:border-transparent">
                         <span className="material-icons">
                             <svg

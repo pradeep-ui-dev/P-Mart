@@ -12,6 +12,7 @@ export const fetchProducts = createAsyncThunk(
         }
       });
       const data = await response.json();
+      console.log(data)
       return data.products;
     } catch (error) {
       if(error.statusCode === 401) {

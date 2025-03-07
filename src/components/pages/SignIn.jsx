@@ -33,7 +33,7 @@ const SignIn = () => {
       try {
         const { data: response } = await axios({
           method: "POST",
-          url: "http://localhost:6001/auth/login",
+          url: "http://localhost:8000/auth/signin",
           headers: {
             is_user: false,
           },
@@ -42,7 +42,7 @@ const SignIn = () => {
             password: formData.password,
           },
         });
-
+        //console.log(response.data.token)
         localStorage.setItem("token", response.data.token);
         navigate("/dashboard");
       } catch (error) {

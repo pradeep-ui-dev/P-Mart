@@ -6,6 +6,8 @@ import FormLabel from "../shared/form/FormLabel";
 import FormRow from "../shared/form/FormRow";
 import { SignUpIcon } from "../shared/Icons";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -29,11 +31,38 @@ const SignUp = () => {
             return updatedValues
         })
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if(validate(formData)){
-            console.log("Form is successfully submitted!");
-            navigate("/signin")
+            
+            //navigate("/signin")
+
+            try {
+                const { data: response } = await axios({
+                    method: "POST",
+                    url: "http://localhost:8000/auth/signup",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    data: {
+                        first_name: formData.firstName,
+                        last_name: formData.lastName,
+                        email: formData.emailId,
+                        username: formData.emailId,
+                        password: formData.password,
+                        isArtist: false
+                    },
+                });
+                //console.log(response)
+                navigate("/signin");
+              } catch (error) {
+                toast.error("Sign Up failed", {
+                  position: "top-left",
+                  autoClose: false,
+                });
+              }
+              console.log("Form is successfully submitted!");
         }
         else{
             console.log("Form has some errors!")

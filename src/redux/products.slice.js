@@ -25,6 +25,7 @@ const productSlice = createSlice({
       (state, action) => {
         state.products = action.payload;
         state.loading = false;
+        console.log(action.payload)
       }
     );
     builder.addCase(
@@ -33,6 +34,7 @@ const productSlice = createSlice({
         state.loading = false;
         state.error = true;
         state.errorMessage = action.payload.message
+        console.log(action.payload.message)
       }
     );
   },
