@@ -7,9 +7,10 @@ export const fetchProducts = createAsyncThunk(
     try {
       const response = await fetch({
         url: `https://dummyjson.com/products?limit=${limit}&offset=${offset}`,
+        
         headers: {
-          'autorotation' : `Bearer ${localStorage.getItem('token')}`
-        }
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
       });
       const data = await response.json();
       console.log(data)
