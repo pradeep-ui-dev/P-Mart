@@ -19,7 +19,7 @@ const Header = () => {
         dispatch(fetchUserDetails());
     }, [dispatch])
 
-    console.log(userRole)
+    //console.log(userRole)
     return(
         <header className="bg-white shadow-lg sticky top-0 right-0 z-[1100]">
             <div className="mx-auto flex items-center justify-between py-3 px-6">
@@ -40,7 +40,7 @@ const Header = () => {
                             window.location.href = "/dashboard/add-roles"
                         }}
                         icon=""
-                        className="mt-3 px-4 py-2 text-white rounded-md transition duration-200 "
+                        className="px-4 py-2 text-white rounded-md transition duration-200 "
                         variant="success"
                         btnText="Add Roles"
                     />)}
