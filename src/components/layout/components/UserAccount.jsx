@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserDetails } from "../../../redux/userDetails.api";
 
 const UserAccount = () => {
-  console.log(`${localStorage.getItem("token")}`)
+  //console.log(`${localStorage.getItem("token")}`)
 
   //const dispatch = useDispatch();
   const { userDetail, loading } = useSelector((state) => state.userDetails);

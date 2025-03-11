@@ -19,7 +19,6 @@ const userDetailsSlice = createSlice({
         builder.addCase(fetchUserDetails.fulfilled, (state, action) => {
             state.userDetail = action.payload;
             state.loading = false;
-            console.log(action.payload)
         });
         builder.addCase(fetchUserDetails.rejected, (state, action) => {
             state.loading = false;

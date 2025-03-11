@@ -16,7 +16,7 @@ const ProductList = () => {
         offset: 2
         }))
     }, []);
-    console.log(products)
+    //console.log(products)
     if (loading) {
         return (
           <div className="w-full min-h-svh flex justify-center items-center">
